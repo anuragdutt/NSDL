@@ -1,0 +1,5 @@
+# Function related to data visualization work
+
+count_unique_isin.R:
+Get the number of unique isins and net asset value for every given account in a day's
+holdings and categorise the accounts based on preset definition.

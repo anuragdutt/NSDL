@@ -1,0 +1,26 @@
+app:
+
+	-mkdir /home/nsdl/LOGS/NESTLE_HOLDINGS
+
+	-rm -r /home/nsdl/TAR-COMPILATION/NESTLE_HOLDINGS
+
+	mv nestle_sumstats_functions.R /home/nsdl/ENV/NESTLE_HOLDINGS/.
+
+	R --vanilla < NESTLE_HOLDINGS/nestle_sumstats_functions.R
+
+	mv /home/nsdl/LOGS/NESTLE_HOLDINGS/ /home/nsdl/TAR-COMPILATION/
+
+	find . -maxdepth 1 -type f -exec cp '{}' /home/nsdl/TMP \;
+
+	tar -cvf /home/nsdl/TAR-COMPILATION/nestle_sumstats.tar /home/nsdl/TAR-COMPILATION/NESTLE_HOLDINGS
+
+clean:
+
+	-rm /home/nsdl/TMP/*
+
+	-find . -maxdepth 1 ! -type d -delete
+all:
+
+	make app
+
+	make clean

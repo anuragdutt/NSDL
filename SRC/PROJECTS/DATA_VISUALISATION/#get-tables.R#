@@ -1,0 +1,1073 @@
+options(scipen = 999, digits = 4)
+library(xtable)
+library(qcc)
+library(plotrix)
+library(zoo)
+library(Hmisc)
+
+na.data <- 24790591
+ag.data <- 14920737
+ne.data <- 4911113
+
+all.files <-
+    list.files("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/NON_EMPTY",
+               full.names = TRUE)
+load.f <- all.files[grep("Rdata", all.files)]
+for(i in load.f) {
+    var.name   <- print(load(i))
+    var.assign <- paste0("ne.", var.name)
+    eval(parse(text = paste0(var.assign, " <- ", var.name)))
+}
+all.files <-
+    list.files("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/AGGREGATED",
+               full.names = TRUE)
+load.f <- all.files[grep("Rdata",
+                         all.files)]
+for(i in load.f) {
+    var.name   <- print(load(i))
+    var.assign <- paste0("ag.", var.name)
+    eval(parse(text = paste0(var.assign, " <- ", var.name)))
+}
+all.files <-
+    list.files("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/NON_AGGREGATED",
+               full.names = TRUE)
+load.f <- all.files[grep("Rdata",
+                         all.files)]
+for(i in load.f) {
+    var.name   <- print(load(i))
+    var.assign <- paste0("na.", var.name)
+    eval(parse(text = paste0(var.assign, " <- ", var.name)))
+}
+
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/client_type_portfolio_value.Rdata")
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/client_category_portfolio_value.Rdata")
+
+type.val$mean <- type.val$mean/1000000
+category.val$mean <- category.val$mean/1000000
+type.val$median <- type.val$median/1000000
+category.val$median <- category.val$median/1000000
+
+print(xtable(type.val, digits=3),
+      hline.after=NULL, only.contents=TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/type_val.tex")
+
+category.val$client_category <- category.val$client_id
+category.val$client_id <- NULL
+
+print(xtable(category.val, digits=3),
+      hline.after=NULL, only.contents=TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/category_val.tex")
+
+
+db.summary <- data.frame(
+    fields = c(
+        "Demat custody quantity (bn units)",
+        "Demat custody quantity tracked (bn units)",
+        "Demat custody value (tn Rs)",
+        "Demat custody value tracked (tn Rs)",
+        "Unique ISINs in the dataset",
+        "Equity ISINs tracked to known companies"
+    ),
+    values = c(
+        1100.2,
+        318.3,
+        117.2,
+        76.6,
+        as.character(34494),
+        as.character(4334)
+    )
+)
+
+print(xtable(db.summary, digits=1),
+      hline.after=NULL, only.contents=TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/db_summary.tex")
+
+
+client.summary <- data.frame(
+    fields = c(
+        "Total registered PAN IDs",
+        "Total registered accounts",
+        "Active PAN IDs (aggregated)",
+        "Active accounts",
+        "PAN IDs with closed status",
+        "Accounts with closed status"
+
+    ),
+    values = c(
+        14.9,
+        24.6,
+        10.4,
+        13.6,
+        4.3,
+        10.6
+        
+    )
+)
+
+print(xtable(client.summary, digits=1),
+      hline.after=NULL, only.contents=TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/client_summary.tex")
+
+
+ac.category <- data.frame(account_category = c("House client",
+                                              "Beneficiary client",
+                                              "Clearing Member"),
+                          number_of_accounts_aggregated = c(182,
+                                                            14916253, 4302),
+                          number_of_accounts_non_aggregated = c(12825,
+                                                                24763643,
+                                                                14123),
+                          active = c(
+                              47, 4910780, 86
+                          )
+                         )
+
+print(xtable(ac.category, digits=0),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/ac_category.tex")
+
+
+ag.occ.per <- ag.occupation/sum(ag.occupation)*100
+na.occ.per <- na.occupation/sum(na.occupation)*100
+ne.occ.per <- ne.occupation/sum(ne.occupation)*100
+ag.occ.per <- ag.occ.per[sort(names(ag.occ.per))]
+na.occ.per <- na.occ.per[sort(names(na.occ.per))]
+ne.occ.per <- ne.occ.per[sort(names(ne.occ.per))]
+
+occ.per <- as.matrix(rbind(ag.occ.per,
+                           na.occ.per,
+                           ne.occ.per))
+colnames(occ.per) <- names(ag.occ.per)
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/COMBINED/occ_distribution.pdf" )
+lbls <- colnames(occ.per)
+layout(matrix(c(1,2),nrow=2),
+      heights=c(3,1)
+       )
+par(mar=c(0,5,3,3), mgp = c(3, 0.75, 0), las = 1)
+occ.dist <- barplot(occ.per,
+                    beside = TRUE,
+                    col = c("darkred", "darkgray", "white"),
+                    axis.lty = 1,
+                    font.lab = 2,
+                    names.arg = lbls,
+                    xlab = "",
+                  #  xaxt = "n",
+                    ylab = "Percentage of total accounts",
+                    ylim = c(0, max(occ.per) + 7),
+                    main = "",
+                    las = 2,
+                    cex.axis = 0.75,
+                    cex.names = 0.75,
+                    cex.lab = 0.85)
+
+box(lty = "solid")
+mtext(expression(bold("Occupation categories (as provided by NSDL)")),
+      side = 1,
+      line = 5,
+      cex = 0.75)
+
+text(x = occ.dist,
+     y = occ.per + 3,
+     labels = paste0(
+                     round(occ.per, 1),
+                     sep = "%"),
+     srt = 90,
+     cex = 0.75
+     )
+plot.new()
+par(mar = c(0.1, 0.5, 0.5, 0.5))
+legend(x = "bottom",
+       bty = 'n',
+       fill = c("darkred", "darkgray", "white"),
+       legend = c("Aggregated by PAN", "Not aggregated by PAN",
+                  "Active accounts with atleast one ISIN"
+                  ),
+       ncol = 2,
+       cex = 0.75,
+       y.intersp = 1.25
+       )
+
+dev.off()
+
+#########################################
+
+account.status <- data.frame(
+    account_status = names(ag.account.status),
+    noa_ag = as.numeric(ag.account.status),
+    noa_na = as.numeric(na.account.status),
+    noa_ne = c(as.numeric(ne.account.status), NA)
+)
+
+print(xtable(account.status, digits=0),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/COMBINED/account_status.tex")
+
+
+######################################### age
+
+ag.cty.per <- ag.client.type/sum(ag.client.type)*100
+ag.cty.per[11] <- ag.cty.per[11] + ag.cty.per[12]
+ag.cty.per[12] <- NA
+ag.cty.per <- ag.cty.per[!is.na(ag.cty.per)]
+ag.cty.per <- round(ag.cty.per,3)
+ag.client.type[11] <- ag.client.type[11] + ag.client.type[12]
+ag.client.type[12] <- NA
+ag.client.type <- ag.client.type[!is.na(ag.client.type)]
+ag.client.type <- round(ag.client.type,3)
+
+
+na.cty.per <- na.client.type/sum(na.client.type)*100
+na.cty.per[11] <- na.cty.per[11] + na.cty.per[12]
+na.cty.per[12] <- NA
+na.cty.per <- na.cty.per[!is.na(na.cty.per)]
+na.cty.per <- round(na.cty.per,3)
+na.client.type[11] <- na.client.type[11] + na.client.type[12]
+na.client.type[12] <- NA
+na.client.type <- na.client.type[!is.na(na.client.type)]
+na.client.type <- round(na.client.type,3)
+
+ne.cty.per <- ne.client.type/sum(ne.client.type)*100
+ne.cty.per[11] <- ne.cty.per[11] + ne.cty.per[12]
+ne.cty.per[12] <- NA
+ne.cty.per <- ne.cty.per[!is.na(ne.cty.per)]
+ne.cty.per <- round(ne.cty.per,3)
+ne.client.type[11] <- ne.client.type[11] + ne.client.type[12]
+ne.client.type[12] <- NA
+ne.client.type <- ne.client.type[!is.na(ne.client.type)]
+ne.client.type <- round(ne.client.type,3)
+
+
+lbls <- c("Resident", "FI",
+          "FII", "NRI", "Corporate",
+          "Clearing member", "Foreign national",
+          "Mutual fund", "Trust",
+          "Bank", "Foreign qualified investor",
+          "Foreign portfolio investor (Individual)",
+          "Foreign portfolio investor (Corporate)"
+          )
+
+cty.per <- data.frame(labels = lbls,
+                      non_aggregated = na.cty.per,
+                      non_aggregated_no = na.client.type,
+                      aggregated = ag.cty.per,
+                      aggregated_no = ag.client.type, 
+                      non_empty = ne.cty.per,
+                      non_empty_no = ne.client.type,
+                      stringsAsFactors = FALSE
+                      )
+
+cty.per <- cty.per[order(cty.per[["labels"]]), ]
+cty.per <- cty.per[c(12, 1:11, 13), ]
+cty.cat <- data.frame(labels = c("Residents",
+                                 "Institutions",
+                                 "Foreign"),
+                      non_aggregated = c(cty.per$non_aggregated[1],
+                                         cty.per$non_aggregated[2] +
+                                         cty.per$non_aggregated[3] +
+                                         cty.per$non_aggregated[4] +
+                                         cty.per$non_aggregated[5] +
+                                         cty.per$non_aggregated[11] +
+                                         cty.per$non_aggregated[13],
+                                         cty.per$non_aggregated[10] +
+                                         cty.per$non_aggregated[12] +
+                                         cty.per$non_aggregated[9] +
+                                         cty.per$non_aggregated[8] +
+                                         cty.per$non_aggregated[7] +
+                                         cty.per$non_aggregated[6]),
+                      non_aggregated_no = c(cty.per$non_aggregated_no[1],
+                                            cty.per$non_aggregated_no[2] +
+                                            cty.per$non_aggregated_no[3] +
+                                            cty.per$non_aggregated_no[4] +
+                                            cty.per$non_aggregated_no[5] +
+                                            cty.per$non_aggregated_no[11] +
+                                            cty.per$non_aggregated_no[13],
+                                            cty.per$non_aggregated_no[10] +
+                                            cty.per$non_aggregated_no[9] +
+                                            cty.per$non_aggregated_no[8] +
+                                            cty.per$non_aggregated_no[7] +
+                                            cty.per$non_aggregated_no[12] +
+                                            cty.per$non_aggregated_no[6]),
+                      
+                      aggregated = c(cty.per$aggregated[1],
+                                     cty.per$aggregated[2] +
+                                     cty.per$aggregated[3] +
+                                     cty.per$aggregated[4] +
+                                     cty.per$aggregated[5] +
+                                     cty.per$aggregated[11] +
+                                     cty.per$aggregated[13],
+                                     cty.per$aggregated[10] +
+                                     cty.per$aggregated[9] +
+                                     cty.per$aggregated[8] +
+                                     cty.per$aggregated[7] +
+                                     cty.per$aggregated[12] +
+                                     cty.per$aggregated[6]),
+                      aggregated_no = c(cty.per$aggregated_no[1],
+                                     cty.per$aggregated_no[2] +
+                                     cty.per$aggregated_no[3] +
+                                     cty.per$aggregated_no[4] +
+                                     cty.per$aggregated_no[5] +
+                                     cty.per$aggregated_no[11] +
+                                     cty.per$aggregated_no[13],
+                                     cty.per$aggregated_no[10] +
+                                     cty.per$aggregated_no[9] +
+                                     cty.per$aggregated_no[8] +
+                                     cty.per$aggregated_no[7] +
+                                     cty.per$aggregated_no[12] +
+                                     cty.per$aggregated_no[6]),
+                      non_empty = c(cty.per$non_empty[1],
+                                     cty.per$non_empty[2] +
+                                     cty.per$non_empty[3] +
+                                     cty.per$non_empty[4] +
+                                     cty.per$non_empty[5] +
+                                     cty.per$non_empty[11] +
+                                     cty.per$non_empty[13],
+                                     cty.per$non_empty[10] +
+                                     cty.per$non_empty[9] +
+                                     cty.per$non_empty[8] +
+                                     cty.per$non_empty[7] +
+                                     cty.per$non_empty[12] +
+                                     cty.per$non_empty[6]),
+                      non_empty_no = c(cty.per$non_empty_no[1],
+                                     cty.per$non_empty_no[2] +
+                                     cty.per$non_empty_no[3] +
+                                     cty.per$non_empty_no[4] +
+                                     cty.per$non_empty_no[5] +
+                                     cty.per$non_empty_no[11] +
+                                     cty.per$non_empty_no[13],
+                                     cty.per$non_empty_no[10] +
+                                     cty.per$non_empty_no[9] +
+                                     cty.per$non_empty_no[8] +
+                                     cty.per$non_empty_no[7] +
+                                     cty.per$non_empty_no[12] +
+                                     cty.per$non_empty_no[6])
+                      )
+
+
+cty.per[which(cty.per$labels == "Bank"), 1] <-
+    paste("\\rowcolor{lightgray}", cty.per[which(cty.per$labels == "Bank"), 1])
+cty.per[which(cty.per$labels == "Mutual fund"), 1] <-
+    paste("\\rowcolor{lightgray}", cty.per[which(cty.per$labels ==
+                                                 "Mutual fund"), 1])
+
+print(xtable(cty.cat, digits=c(0,0,2,0,2,0,2,0)),
+      hline.after=NULL,
+      only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      sanitize.text.function = function(x) x,
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/COMBINED/client_type_consolidated.tex")
+
+
+
+print(xtable(cty.per, digits=c(0,0,2,0,2,0,2,0)),
+      hline.after=NULL,
+      only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      sanitize.text.function = function(x) x,
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/COMBINED/client_type.tex")
+
+
+
+############################################### opening year
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/NON_AGGREGATED/opening_year_distribution_non_aggregated.Rdata")
+op.per <- opening.year/sum(opening.year)*100
+op.per <- op.per[!is.na(names(op.per))]
+if(length(which(names(op.per) %in% "9999")) > 0) {
+    op.per <- op.per[-which(names(op.per) == "9999")]
+}
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/opening_year_distribution_non_aggregated.pdf" )
+op.per <- op.per[sort(names(op.per))]
+lbls <- names(op.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+op.dist <- barplot(op.per,
+                    beside = TRUE,
+                    col = "darkred",
+                    axis.lty = 1,
+                    font.lab = 2,
+                    names.arg = lbls,
+                    xlab = "",
+                  #  xaxt = "n",
+                    ylab = "Percentage of total accounts",
+                    ylim = c(0, max(op.per) + 7),
+                    main =
+                        "",
+                    las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("Years")), side = 1, line = 7)
+
+text(x = op.dist,
+     y = op.per + 1,
+     labels = paste0(
+         round(op.per, 1),
+         sep = "%"),
+     srt = 90)
+
+dev.off()
+
+############################################## opening month
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/NON_AGGREGATED/opening_month_distribution_non_aggregated.Rdata")
+
+om.per <- opening.month/sum(opening.month)*100
+om.per <- om.per[!is.na(names(om.per))]
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/opening_month_distribution_non_aggregated.pdf" )
+lbls <- names(om.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+om.dist <- barplot(om.per,
+                    beside = TRUE,
+                    col = "darkred",
+                    axis.lty = 1,
+                    font.lab = 2,
+                    names.arg = lbls,
+                    xlab = "",
+                  #  xaxt = "n",
+                    ylab = "Percentage of total accounts",
+                    ylim = c(0, max(om.per) + 7),
+                    main =
+                        "",
+                    las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("Months")), side = 1, line = 7)
+
+text(x = om.dist,
+     y = om.per + 1,
+     labels = paste0(
+         round(om.per, 1),
+         sep = "%"),
+     srt = 90)
+
+dev.off()
+
+################################################closing.year
+names(closing.year) <- c(2000, 2001, 2010, 2011, 2012, 2013,
+                         2014,2015, 2002, 2003, 2004, 2005, 2006,
+                         2007, 2008,2009, 1997, 1998, 1999)
+closing.year <- closing.year[order(names(closing.year))]
+
+cp.per <- closing.year/sum(closing.year)*100
+cp.per <- cp.per[!is.na(names(cp.per))]
+if(length(which(names(cp.per) %in% "9999")) > 0) {
+    cp.per <- cp.per[-which(names(cp.per) == "9999")]
+}
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/closing_year_distribution_non_aggregated.pdf" )
+cp.per <- cp.per[sort(names(cp.per))]
+lbls <- names(cp.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+cp.dist <- barplot(cp.per,
+                    beside = TRUE,
+                    col = "darkred",
+                    axis.lty = 1,
+                    font.lab = 2,
+                    names.arg = lbls,
+                    xlab = "",
+                  #  xaxt = "n",
+                    ylab = "Percentage of total accounts",
+                    ylim = c(0, max(cp.per) + 7),
+                    main =
+                        "",
+                    las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("Years")), side = 1, line = 7)
+
+text(x = cp.dist,
+     y = cp.per + 1,
+     labels = paste0(
+         round(cp.per, 1),
+         sep = "%"),
+     srt = 90)
+
+dev.off()
+###################################closing month
+
+cm.per <- closing.month/sum(closing.month)*100
+cm.per <- cm.per[!is.na(names(cm.per))]
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/closing_month_distribution_non_aggregated.pdf" )
+lbls <- names(cm.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+cm.dist <- barplot(cm.per,
+                    beside = TRUE,
+                    col = "darkred",
+                    axis.lty = 1,
+                    font.lab = 2,
+                    names.arg = lbls,
+                    xlab = "",
+                  #  xaxt = "n",
+                    ylab = "Percentage of total accounts",
+                    ylim = c(0, max(cm.per) + 7),
+                    main =
+                        "",
+                    las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("Months")), side = 1, line = 7)
+
+text(x = cm.dist,
+     y = cm.per + 1,
+     labels = paste0(
+         round(cm.per, 1),
+         sep = "%"),
+     srt = 90)
+
+dev.off()
+
+############################################### opening year
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/NON_AGGREGATED/opening_active_year_distribution_non_aggregated.Rdata")
+op.per <- opening.year/sum(opening.year)*100
+op.per <- op.per[!is.na(names(op.per))]
+if(length(which(names(op.per) %in% "9999")) > 0) {
+    op.per <- op.per[-which(names(op.per) == "9999")]
+}
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/opening_active_year_distribution_non_aggregated.pdf" )
+op.per <- op.per[sort(names(op.per))]
+lbls <- names(op.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+op.dist <- barplot(op.per,
+                    beside = TRUE,
+                    col = "darkred",
+                    axis.lty = 1,
+                    font.lab = 2,
+                    names.arg = lbls,
+                    xlab = "",
+                  #  xaxt = "n",
+                    ylab = "Percentage of total accounts",
+                    ylim = c(0, max(op.per) + 7),
+                    main =
+                        "",
+                    las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("Years")), side = 1, line = 7)
+
+text(x = op.dist,
+     y = op.per + 1,
+     labels = paste0(
+         round(op.per, 1),
+         sep = "%"),
+     srt = 90)
+
+dev.off()
+
+##############################################active opening month
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/NON_AGGREGATED/opening_active_month_distribution_non_aggregated.Rdata")
+
+om.per <- opening.month/sum(opening.month)*100
+om.per <- om.per[!is.na(names(om.per))]
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/opening_active_month_distribution_non_aggregated.pdf" )
+lbls <- names(om.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+om.dist <- barplot(om.per,
+                    beside = TRUE,
+                    col = "darkred",
+                    axis.lty = 1,
+                    font.lab = 2,
+                    names.arg = lbls,
+                    xlab = "",
+                  #  xaxt = "n",
+                    ylab = "Percentage of total accounts",
+                    ylim = c(0, max(om.per) + 7),
+                    main =
+                        "",
+                    las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("Months")), side = 1, line = 7)
+
+text(x = om.dist,
+     y = om.per + 1,
+     labels = paste0(
+         round(om.per, 1),
+         sep = "%"),
+     srt = 90)
+
+dev.off()
+
+
+
+#################################### age
+
+## tenure.op <- tenure.op[-length(tenure.op)]
+tenure.op[14] <- tenure.op[14] + tenure.op[15] +
+    tenure.op[16] + tenure.op[17] + tenure.op[18] +
+    tenure.op[19] + tenure.op[20]
+tenure.op <- tenure.op[-(15:20)]
+names(tenure.op) <- c("0-1",
+                      "1-2",
+                      "2-3",
+                      "3-4",
+                      "4-5",
+                      "5-6",
+                      "6-7",
+                      "7-8",
+                      "8-9",
+                      "9-10",
+                      "10-11",
+                      "11-12",
+                      "12-13",
+                      "> 13")
+op.per <- tenure.op/sum(tenure.op)*100
+names(op.per) <- names(tenure.op)
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/active_account_age_distribution_non_aggregated.pdf" )
+lbls <- names(op.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+op.dist <- barplot(op.per,
+                   beside = TRUE,
+                   col = "darkred",
+                   axis.lty = 1,
+                   font.lab = 2,
+                   names.arg = lbls,
+                   xlab = "",
+                   # xaxt = "n",
+                   ylab = "Percentage of total accounts",
+                   ylim = c(0, max(op.per) + 3.5),
+                   main =
+                       "",
+                   las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("Account age in years")), side = 1, line = 4)
+
+
+text(x = op.dist,          
+     y = op.per + 1,       
+     labels = paste0(      
+         round(op.per, 1), 
+         sep = "%"),       
+     srt = 90)             
+
+
+dev.off()
+
+
+
+#########################################
+
+
+
+tenure.cl[14] <- tenure.cl[14] + tenure.cl[15] +
+    tenure.cl[16] + tenure.cl[17] + tenure.cl[18] +
+    tenure.cl[19]
+tenure.cl <- tenure.cl[-(15:19)]
+names(tenure.cl) <- c("0-1",
+                      "1-2",
+                      "2-3",
+                      "3-4",
+                      "4-5",
+                      "5-6",
+                      "6-7",
+                      "7-8",
+                      "8-9",
+                      "9-10",
+                      "10-11",
+                      "11-12",
+                      "12-13",
+                      "> 13")
+cl.per <- tenure.cl/sum(tenure.cl)*100
+names(cl.per) <- names(tenure.cl)
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/inactive_account_age_distribution.pdf" )
+lbls <- names(cl.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+cl.dist <- barplot(cl.per,
+                   beside = TRUE,
+                   col = "darkred",
+                   axis.lty = 1,
+                   font.lab = 2,
+                   names.arg = lbls,
+                   xlab = "",
+                   # xaxt = "n",
+                   ylab = "Percentage of total accounts",
+                   ylim = c(0, max(cl.per) + 3.5),
+                   main =
+                       "",
+                   las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("years")), side = 1, line = 7)
+
+
+text(x = cl.dist,          
+     y = cl.per + 1,       
+     labels = paste0(      
+         round(cl.per, 1), 
+         sep = "%"),       
+     srt = 90)             
+
+
+dev.off()
+
+###############################################
+district.dat <- district.dat[-grep("unassigned",
+                                   names(district.dat))]
+
+district.dat <- sort(district.dat, decreasing = TRUE) 
+dis.per <- district.dat/sum(district.dat)*100
+
+dis <- data.frame(district_name =
+                      capitalize(head(names(district.dat), 10)),
+                  per_account = head(as.numeric(dis.per), 10),
+                  accounts = head(as.numeric(district.dat), 10)
+                  )
+
+print(xtable(dis, digits=c(0,0,3,0)),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/highest_district_non_aggregated.tex")
+
+district.low <- district.dat[-grep("unassigned",
+                                   names(district.dat))]
+district.low <- district.low[which(district.low >= 10)]
+district.low <- sort(district.low, decreasing = TRUE)
+
+dis <- data.frame(district_name =
+                      capitalize(tail(names(district.low), 10)),
+                  per_account = tail(as.numeric(district.low), 10),
+                  accounts = tail(as.numeric(district.low), 10)
+                  )
+
+print(xtable(dis, digits=c(0,0,3,0)),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/lowest_district_non_aggregated.tex")
+
+
+
+state.dat <- sort(state.dat, decreasing = TRUE) 
+state.dat <- state.dat[-length(state.dat)]
+st.per <- state.dat/sum(state.dat)*100
+
+st <- data.frame(state_name =
+                      head(names(state.dat), 10),
+                  per_account = head(as.numeric(st.per), 10),
+                  accounts = head(as.numeric(state.dat), 10)
+                  )
+
+
+print(xtable(st, digits=c(0,0,3,0)),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/highest_state_non_aggregated.tex")
+
+st <- data.frame(state_name =
+                      tail(names(state.dat), 10),
+                  per_account = tail(as.numeric(st.per), 10),
+                  accounts = tail(as.numeric(state.dat), 10)
+                  )
+
+print(xtable(st, digits=c(0,0,3,0)),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/lowest_state_non_aggregated.tex")
+
+jp <- data.frame(category = c("Active PAN 2", "Active PAN 3"),
+                 value = c(joint.pan2, joint.pan3),
+                 percentage = c(joint.pan2*100/14920707,
+                                joint.pan3*100/14920707))
+
+
+print(xtable(jp, digits=3),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/joint_pan.tex")
+
+
+########################################isin count
+total.count[20] <- sum(total.count[20:length(total.count)])
+total.count <- total.count[-(21:length(total.count))]
+total.count <- c(10407234 - sum(total.count), total.count)
+names(total.count) <- c(0:19, "> 19")
+
+
+tc.per <- total.count/sum(total.count)*100
+names(tc.per) <- names(total.count)
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/isin_count_distribution_non_aggregated.pdf" )
+lbls <- names(tc.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+tc.dist <- barplot(tc.per,
+                   beside = TRUE,
+                   col = "darkred",
+                   axis.lty = 1,
+                   font.lab = 2,
+                   names.arg = lbls,
+                   xlab = "",
+                   # xaxt = "n",
+                   ylab = "Percentage of total accounts",
+                   ylim = c(0, max(tc.per) + 5),
+                   main =
+                       "",
+                   las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("years")), side = 1, line = 7)
+
+
+text(x = tc.dist,          
+     y = tc.per + 3,       
+     labels = paste0(      
+         round(tc.per, 1), 
+         sep = "%"),       
+     srt = 90)             
+
+
+dev.off()
+
+
+
+track.count[20] <- sum(track.count[20:length(track.count)])
+track.count <- track.count[-(21:length(track.count))]
+track.count <- c(10407234 - sum(track.count), track.count)
+names(track.count) <- c(0:19, "> 19")
+track.count <- track.count[-1]
+
+tc.per <- track.count/sum(track.count)*100
+names(tc.per) <- names(track.count)
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/isin_tracked_count_distribution_non_aggregated.pdf" )
+lbls <- names(tc.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+tc.dist <- barplot(tc.per,
+                   beside = TRUE,
+                   col = "darkred",
+                   axis.lty = 1,
+                   font.lab = 2,
+                   names.arg = lbls,
+                   xlab = "",
+                   # xaxt = "n",
+                   ylab = "Percentage of total accounts",
+                   ylim = c(0, max(tc.per) + 5),
+                   main =
+                       "",
+                   las = 2)
+
+box(lty = "solid")
+mtext(expression(bold("years")), side = 1, line = 7)
+
+
+text(x = tc.dist,          
+     y = tc.per + 3,       
+     labels = paste0(      
+         round(tc.per, 1), 
+         sep = "%"),       
+     srt = 90)             
+
+
+dev.off()
+
+
+th.per <- vec*100/sum(vec)
+names(th.per) <- c(paste0(sep = "< ", as.numeric(names(vec)[-length(vec)])/1000), "> 10000")
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/NON_AGGREGATED/holdings_distribution_non_aggregated.pdf",
+    width = 16, height = 12)
+lbls <- names(th.per)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(0,5,3,3), mgp = c(3,1,0),las = 1)
+th.dist <- barplot(th.per,
+                   beside = TRUE,
+                   col = "darkred",
+                   axis.lty = 1,
+                   font.lab = 2,
+                   names.arg = lbls,
+                   xlab = "",
+                   # xaxt = "n",
+                   ylab = "Percentage of total accounts",
+                   ylim = c(0, max(th.per) + 3),
+                   main =
+                       "",
+                   las = 2,
+                   cex.axis = 1.8,
+                   cex.label = 1.8)
+
+box(lty = "solid")
+mtext(expression(bold("Holdings in Rs thousand")), side = 1, line = 7)
+
+
+text(x = th.dist,          
+     y = th.per + 0.75,       
+     labels = paste0(      
+         round(th.per, 1), 
+         sep = "%"),       
+     srt = 90)             
+
+
+dev.off()
+
+
+
+ud <- data.frame(category = c("Underdiversification",
+                              "Portfolio beta"),
+                 min = c(39.41, -21.499),
+                 per.25 = c(96.00, 0.0786),
+                 median = c(97.35, 0.1154),
+                 mean = c(93.76, 0.5732),
+                 per.75 = c(98.91, 0.1448),
+                 max = c(100, 688.8)
+                 )
+
+
+print(xtable(ud, digits=3),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/ud_beta.tex")
+
+#####################################################################
+
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/security_type.Rdata")
+load("/FRG/db_nsdl/DOC/TABLES/DATA_VISUALISATION/security_distribution.Rdata")
+
+sec.dis <- sec.qty$qty*100/sum(sec.qty$qty)
+names(sec.dis) <- c("Equity Shares",
+                    "Bonds",
+                    "Commercial papers",
+                    "Step Discount Bonds",
+                    "Indian Depository rec.",
+                    "Other instruments")
+pdf("/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/security_distribution.pdf")
+lbls <- names(sec.dis)
+layout(matrix(c(1,2),nrow=2), heights=c(3,1))
+par(mar=c(6,5,3,3), mgp = c(3,1,0),las = 1)
+sec.dist <- barplot(sec.dis,
+                    width = 0.8,
+                    space = 1.2,
+                    beside = TRUE,
+                    col = "darkred",
+                    axis.lty = 1,
+                    font.lab = 2,
+#                    names.arg = rep("", length(sec.dis)),
+                    xlab = "",
+                    xaxt = "n",
+                    ylab = "Percent of total demat custody quantity",
+                    ylim = c(0, max(sec.dis) + 6.5),
+                    main =
+                        "",
+                    las = 2
+#                    cex = 0.7
+
+#                    cex.axis = 0.6,
+#                    cex.lab = 1
+                    )
+
+axis(1,
+     at = sec.dist,
+     labels = FALSE,
+     las = 2,
+     cex = 0.7)
+
+text(cex = 0.8,
+     x = sec.dist - 0.7,
+     y = -17.5,
+     lbls,
+     xpd = TRUE,
+     srt = 45,
+     font = 2)
+
+box(lty = "solid")
+
+text(x = sec.dist,          
+     y = as.numeric(sec.dis) + 4,       
+     labels = paste0(      
+         round(sec.dis, 3), 
+         sep = "%"),       
+     srt = 0,
+     cex = 1.2)             
+
+
+dev.off()
+
+typ.qty$security_client[which(typ.qty$security_client == "11-INE")] <-
+    "12-INE"
+typ.qty$security_client[which(typ.qty$security_client == "13-INE")] <-
+    "14-INE"
+typ.qty <- aggregate(qty ~ security_client,
+                     data = typ.qty,
+                     sum)
+typ.qty$client_type <- unlist(
+    strsplit(typ.qty$security_client, "-"))[
+    seq(from = 1,
+    to = 2*length(typ.qty$security_client),
+    by = 2)
+   ]
+
+typ.qty$security_category <- unlist(
+    strsplit(typ.qty$security_client, "-"))[
+    seq(from = 2,
+    to = 2*length(typ.qty$security_client),
+    by = 2)
+   ]
+
+
+typ.qty[nrow(typ.qty) + 1, ] <- c("12-INF", 0, 12, "INF")
+typ.qty[nrow(typ.qty) + 1, ] <- c("12-OTH", 0, 12, "OTH")
+typ.qty[nrow(typ.qty) + 1, ] <- c("7-INF", 0, 7, "INF")
+typ.qty[nrow(typ.qty) + 1, ] <- c("7-OTH", 0, 7, "OTH")
+
+typ.qty$client_type <- as.numeric(typ.qty$client_type)
+typ.qty$qty <- as.numeric(typ.qty$qty)
+typ.qty <- typ.qty[order(typ.qty$client_type), ]
+grp.sum <- tapply(typ.qty$qty, typ.qty$client_type, sum)
+
+qty.cat <- data.frame(
+    category = c("Resident", "FI",
+                  "FII", "NRI", "Corporate",
+                  "Clearing member", "Foreign national",
+                  "Mutual fund", "Trust",
+                  "Bank", "Foreign qualified investor",
+                  "Foreign portfolio investor"
+                  ),
+    
+    
+    INE = as.numeric(typ.qty$qty[which(typ.qty$security_category == "INE")])*100/grp.sum,
+    INF = as.numeric(typ.qty$qty[which(typ.qty$security_category == "INF")])*100/grp.sum,
+    OTH = as.numeric(typ.qty$qty[which(typ.qty$security_category == "OTH")])*100/grp.sum
+)
+
+qty.cat <- qty.cat[order(qty.cat$category), ]
+
+print(xtable(qty.cat, digits=3),
+      hline.after=NULL, only.contents = TRUE,
+      include.rownames = FALSE,
+      include.colnames=FALSE,
+      type="latex",
+      file="/FRG/db_nsdl/DOC/GRAPHS/DATA_VISUALISATION/security_client_type_categorisation.tex")
+

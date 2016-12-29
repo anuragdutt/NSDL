@@ -1,0 +1,6 @@
+library(xtable)
+library(parallel)
+load("/home/nsdl/DATAMART1/holdings_aggregated.Rdata")
+load("/home/nsdl/DATAMART1/holdings_non_aggregated.Rdata")
+load("/home/nsdl/DATAMART1/client_master_aggregated.Rdata")
+load("/home/nsdl/DATAMART1/client_master_non_aggregated.Rdata")

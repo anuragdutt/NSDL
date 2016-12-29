@@ -1,0 +1,13 @@
+app:
+
+	tar -cvf /home/nsdl/RESULTS/NESTLE_HOLDINGS/nestle_sumstats_tables.tar /home/nsdl/RESULTS/NESTLE_HOLDINGS/table_*  
+clean:
+
+	-rm /home/nsdl/TMP/*
+
+	-find . -maxdepth 1 ! -type d -delete
+all:
+
+	make app
+
+	make clean

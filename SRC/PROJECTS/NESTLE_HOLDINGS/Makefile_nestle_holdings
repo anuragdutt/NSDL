@@ -1,0 +1,34 @@
+app:
+
+	-mkdir /home/nsdl/ENV/NESTLE_HOLDINGS
+
+	-mkdir /home/nsdl/LOGS/NESTLE_HOLDINGS
+
+	-mkdir /home/nsdl/RESULTS/NESTLE_HOLDINGS
+
+	-rm /home/nsdl/RESULTS/NESTLE_HOLDINGS/*
+
+	mv LIB/* /home/nsdl/LIB/.
+
+	-rm -r /home/nsdl/ENV/LIB
+
+	mv nestle_holdings.R /home/nsdl/ENV/NESTLE_HOLDINGS/.
+
+	R --vanilla < NESTLE_HOLDINGS/nestle_holdings.R
+
+	mv /home/nsdl/LOGS/NESTLE_HOLDINGS /home/nsdl/TAR-COMPILATION/.
+
+	find . -maxdepth 1 -type f -exec cp '{}' /home/nsdl/TMP \;
+
+	tar -cvf /home/nsdl/TAR-COMPILATION/nestle_results.tar /home/nsdl/TAR-COMPILATION/NESTLE_HOLDINGS
+
+clean:
+
+	-rm /home/nsdl/TMP/*
+
+	-find . -maxdepth 1 ! -type d -delete
+all:
+
+	make app
+
+	make clean

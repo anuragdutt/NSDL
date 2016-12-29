@@ -1,0 +1,64 @@
+load("/home/nsdl/DATAMART1/client_master_aggregated.Rdata")
+pan.data$account_closing_date <-
+    as.Date(as.character(pan.data$account_closing_date),
+            format = "%y-%m-%d")
+pan.data <- pan.data[-which(pan.data$account_closing_date <
+                            pan.data$account_opening_date), ]
+pan.data$year_open  <- format(as.Date(pan.data$account_opening_date),
+                              format = "%Y")
+pan.data$year_close <- format(as.Date(pan.data$account_closing_date),
+                              format = "%Y")
+pan.data <- pan.data[which(pan.data$account_opening_date ==
+                           "9999-12-31"), ]
+
+len        <- length(unique(as.numeric(pan.data$year_open)))
+year.open  <- sort(unique(as.numeric(pan.data$year_open)))
+year.close <- sort(unique(as.numeric(pan.data$year_close)))
+
+
+close.col <- as.data.frame.matrix(table(pan.data$year_open, pan.data$year_close))
+if(length(year.open) != length(year.close)) {
+    eval(parse(text =
+                   paste0("close.col$",
+                          "temp",
+                          " <- 0")))
+    colnames(close.col)[which(colnames(close.col) == "temp")] <-
+        year.open[-which(year.open %in% year.close)]
+    close.col <- close.col[, sort(colnames(close.col))]
+}
+
+close.col[close.col == 0] <- NA
+close.col[1, ][which(is.na(close.col[1, ]))] <- 0
+
+
+open.dat <- table(pan.data$year_open)
+
+open.df   <- do.call('rbind',
+                     lapply(1:nrow(close.col),
+                            function(yr) {
+                                tmp <- open.dat[yr]
+                                red.diff <- unlist(
+                                    lapply(as.numeric(close.col[yr, ]),
+                                           function(num) {
+                                               dif <- tmp - num
+                                               if(!is.na(num)) {
+                                                   tmp <<- tmp - num    
+                                               }
+                                               
+                                        return(dif)
+                                    }
+                                    )
+                                    )
+                            }
+                            )
+                     )
+                               
+                     
+
+
+colnames(open.df) <- year.open
+rownames(open.df) <- year.open
+
+save(open.df, "/home/nsdl/RESULTS/DATA_VISUALISATION/survival_matrix.Rdata")
+
+open.df <- t(t(open.df)/as.numeric(open.dat))

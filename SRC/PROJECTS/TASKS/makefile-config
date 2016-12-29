@@ -1,0 +1,6 @@
+- create a common makefile - args (filename, project name)
+- add common checks to code:- function to check the paths etc. required for execution of code
+- create logging framework
+- integrate the standalone functions
+- log errors/integrate the common checks
+

@@ -1,0 +1,4 @@
+load("/home/nsdl/DATAMART1/client_details_standard_analysis.Rdata")
+load("/home/nsdl/DATAMART1/dummy_holdings.Rdata")
+##############do isin analysis
+

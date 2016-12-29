@@ -1,0 +1,7 @@
+library("sp")
+library("maptools")
+library("raster")
+
+india <- readShapePoly("india_st")
+ind <- getData("GADM", country = "IND", level = 2)
+plot(ind)
