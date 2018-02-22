@@ -1,0 +1,30 @@
+In the current state, the application is divided into two primary
+modules:-
+
+Table generation module:
+
+The module stored in the SRC section and is programmed in R. The
+function of the module is to Read a JSON file in a pre-determined
+format and calculate the score based on a pre-determined weighted
+average format. The module also generates tables and graphs and
+designates the files into the requisite folders for the generation of
+the report.
+
+Files:
+
+read_data.R:- Reads the JSON file and decrypts the list to segregate
+the headings and subheadings.
+generate_reports.R:- Generates the tex tables to be used in the
+report.
+get_scores:- Calculates the weighted section scores based on the
+weights alloted for each subsection in the section.
+plot_measures.R:-
+Plots the scores (daily timeseries) for each section calculated by the
+get_scores.R function
+
+Process:
+
+In the current the module can handle automated generation for the
+sections "legal foundations", "markets" and financial firms". The code
+execution and the function calls are automated and the user needs to
+only execute the Makefile for the tables and reports to be generated.

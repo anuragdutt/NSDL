@@ -1,0 +1,931 @@
+{
+    
+    "1" : {
+        "area" : "Legal foundations",
+        "subarea" : "Governance of financial agencies",
+        "explanation" : "Legal foundations for working of the board, reporting, appointments",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built a full conceptual framework for financial law that establishes sound governance of financial agencies",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of law for governance of financial agencies. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law for governance of financial agencies. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date" : "2013-12-26",
+                    "milestone": "FSLRC Handbook",
+                    "url" : "http://finmin.nic.in/fslrc/Handbook_GovEnhanc_fslrc.pdf",
+                    "story": "All financial regulators agreed to abide by the FSLRC Handbook which has a strong subset of IFC governance of financial agencies.",
+                    "score": 0.1
+                }
+            ]
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : null        
+        }
+    },
+
+
+    "2" : {
+        "area" : "Legal foundations",
+        "subarea" : "Legislative, executive and quasi-judicial functions of financial agencies",
+        "explanation" : "Establish procedural law for how financial agencies will perform their legislative, executive and quasi-judicial functions.",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built a full conceptual framework for processes to be followed in legislative, executive and quasi-judicial functions",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of the procedural law. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the procedural law. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date" : "2013-12-26",
+                    "milestone": "FSLRC Handbook",
+                    "url" : "http://finmin.nic.in/fslrc/Handbook_GovEnhanc_fslrc.pdf",
+                    "story": "All financial regulators agreed to abide by the FSLRC Handbook which has a strong subset of IFC procedural law for financial agencies.",
+                    "score": 0.1
+                }
+            ]
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : null        
+        }
+    },
+
+
+    "3" : {
+        "area" : "Legal foundations",
+        "subarea" : "Consumer protection",
+        "explanation" : "Law that establishes rights of consumers of financial products and services",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2009-12-01",
+                    "milestone": "Dhirendra Swarup Committee",
+                    "url": "https://ajayshahblog.blogspot.in/2015/02/expert committee reports in indian.html",
+                    "story": "This was the first effort on consumer protection in India, which developed a body of knowledge which fed into the next stage",
+                    "score": 0.1
+                },
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built a full conceptual framework for consumer protection in financial law",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a financial consumer protection law. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the financial consumer protection law. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date" : "2013-12-26",
+                    "milestone": "FSLRC Handbook",
+                    "url" : "http://finmin.nic.in/fslrc/Handbook_GovEnhanc_fslrc.pdf",
+                    "story": "All financial regulators agreed to abide by the FSLRC Handbook which has a strong subset of IFC Consumer protection.",
+                    "score": 0.1
+                }
+            ]
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : null        
+        }
+    },
+
+    
+    "4" : {
+        "area" : "Legal foundations",
+        "subarea" : "Micro-prudential regulation",
+        "explanation" : "Law that establishes a non-sectoral principles-based framework for micro-prudential regulation",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built a full conceptual framework for a non-sectoral micro-prudential framework in financial law",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a non-sectoral micro-prudential regulation law. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the non-sectoral micro-prudential law. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : null
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : null        
+        }
+    },
+
+    
+    "5" : {
+        "area" : "Legal foundations",
+        "subarea" : "Development",
+        "explanation" : "Law that establishes a sound framework for financial development, which comprises improvementes in market infrastructure and processes, and finance for the poor",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built the conceptual framework for law on financial development",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law on financial development. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law on financial development. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : null
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : null        
+        }
+    },
+
+    
+    "6" : {
+        "area" : "Legal foundations",
+        "subarea" : "Capital controls",
+        "explanation" : "Law that establishes a sound framework for capital controls",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2010-07-30",
+                    "milestone": "Working Group on Foreign Investment (chairman: U. K. Sinha)",
+                    "url": "http://www.finmin.nic.in/WGFI.pdf",
+                    "story": "The U. K. Sinha Working Group began the process of rethinking the legal and regulatory strategy for capital controls",
+                    "score": 0.1
+                },
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built the conceptual framework for law on capital controls",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law on capital controls. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law on capital controls. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date": "2015-02-28",
+                    "milestone": "FEMA Amendment in Budget 2015",
+                    "url": "http://indiabudget.nic.in/ub2015-16/fb/bill.pdf",
+                    "story": "IFC had recommended that the regulation-making process for capital controls should move from RBI to MOF. S.6 of FEMA was amended to shift this power for non-debt flows. The amended law did not, however, ensure sound processes would be used by MOF",
+                    "score": 0.2
+                }
+            ]
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : null        
+        }
+    },
+
+
+    "7" : {
+        "area" : "Legal foundations",
+        "subarea" : "Resolution",
+        "explanation" : "Law that establishes the Resolution Corporation",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2007-02-10",
+                    "milestone": "Mumbai as International Financial Centre (Chairman: Percy Mistry)",
+                    "url": "http://www.finmin.nic.in/mifc/mifcreport.pdf",
+                    "story": "First worked on a sound resolution mechanism",
+                    "score": 0.1
+                },
+                {
+                    "date": "2008-09-12",
+                    "milestone": "A hundred small steps (Chairman: Raghuram Rajan)",
+                    "url": "http://planningcommission.nic.in/reports/genrep/rep_fr/cfsr_all.pdf",
+                    "story": "Carried forward the thinking on the resolution mechanism",
+                    "score": 0.2
+                },
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built the conceptual framework for the resolution law",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law for Resolution Corporation. It was 70% good.",
+                    "score": 0.7
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law for Resolution Corporation. At this point it was 90% good",
+                    "score": 0.9
+                },
+                {
+                    "date": "2016-09-21",
+                    "milestone": "DEA Committee on Resolution Law",
+                    "url": "http://finmin.nic.in/fslrc/report_rc_sept21.pdf",
+                    "story": "DEA committee started from the IFC 1.1 resolution law, improved it in some respects, watered it down in some respects",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : null
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date": "2014-09-30",
+                    "milestone": "RC TF",
+                    "url": "https://ajayshahblog.blogspot.in/2014/09/4-task-forces-setup-by-mof-to-build.html",
+                    "story": "Task Force on setting up the RC (Chairman: M. Damodaran) made an implementation plan for building RC",
+                    "score": 0.1
+                }
+            ]
+        }
+    },
+
+
+    "8" : {
+        "area" : "Legal foundations",
+        "subarea" : "Financial Redress Agency",
+        "explanation" : "Law that establishes the Financial Redress Agency",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built the conceptual framework for the Financial Redress Agency",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law on the Financial Redress Agency. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law on FRA. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : null
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date" : "2016-06-05",
+                    "milestone": "FRA TF",
+                    "url": "https://ajayshahblog.blogspot.in/2015/06/institution-building-for-fslrc-mof-has.html",
+                    "story": "FRA Task Force (Chair: Dhirendra Swarup) built an implementation plan for the FRA",
+                    "score": 0.1
+                }
+            ]
+        }
+    },
+
+
+    "9" : {
+        "area" : "Legal foundations",
+        "subarea" : "Reserve Bank of India",
+        "explanation" : "Law that establishes the Reserve Bank of India as monetary policy + banking regulation",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2007-02-10",
+                    "milestone": "Mumbai as International Financial Centre (Chairman: Percy Mistry)",
+                    "url": "http://www.finmin.nic.in/mifc/mifcreport.pdf",
+                    "story": "First worked on removing extraneous functions, and focusing RBI upon inflation targeting",
+                    "score": 0.1
+                },
+                {
+                    "date": "2008-09-12",
+                    "milestone": "A hundred small steps (Chairman: Raghuram Rajan)",
+                    "url": "http://planningcommission.nic.in/reports/genrep/rep_fr/cfsr_all.pdf",
+                    "story": "Carried forward the thinking on removing extraneous functions, and focusing RBI upon inflation targeting",
+                    "score": 0.2
+                },
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built the conceptual framework for RBI, inflation targeting, removing extraneous functions, MPC",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law on RBI. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law on RBI. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date": "2015-02-20",
+                    "milestone": "MPFA",
+                    "url": "https://ajayshahblog.blogspot.in/2015/03/monetary-policy-framework-agreement.html",
+                    "story": "MOF and RBI signed the Monetary Policy Framework Agreement, which established an inflation target of 4%",
+                    "score": 0.2
+                },
+                {
+                    "date": "2016-02-28",
+                    "milestone": "RBI Act amended",
+                    "url": "http://indiabudget.nic.in/ub2016-17/memo/mem1.pdf",
+                    "story": "RBI Act was amended to enshrine inflation target, MPC (3:3), and remove the `temporary provision' in the Preamble",
+                    "score": 0.4
+                }
+            ]
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date" : "2016-10-18",
+                    "milestone": "1st MPC meeting",
+                    "url":"https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=38332",
+                    "story": "First meeting of the MPC which voted to decide that the policy rate should be cut",
+                    "score": 0.2
+                }
+            ]
+        }
+    },
+
+
+    "10" : {
+        "area" : "Legal foundations",
+        "subarea" : "Unified Financial Authority",
+        "explanation" : "Law that establishes the Unified Financial Authority for all finance other than banking",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2007-02-10",
+                    "milestone": "Mumbai as International Financial Centre (Chairman: Percy Mistry)",
+                    "url": "http://www.finmin.nic.in/mifc/mifcreport.pdf",
+                    "story": "First work on a UK FSA-like regulator",
+                    "score": 0.1
+                },
+                {
+                    "date": "2008-09-12",
+                    "milestone": "A hundred small steps (Chairman: Raghuram Rajan)",
+                    "url": "http://planningcommission.nic.in/reports/genrep/rep_fr/cfsr_all.pdf",
+                    "story": "Carried forward the thinking on unification of financial markets into SEBI",
+                    "score": 0.2
+                },
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 built the conceptual framework for UFA",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law on UFA. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law on UFA. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date": "2015-02-28",
+                    "milestone": "FMC merger",
+                    "url": "http://indiabudget.nic.in/ub2015-16/fb/bill.pdf",
+                    "story": "FMC merged into SEBI with repeal of FC(R)A in Budget 2015.",
+                    "score": 0.1
+                }
+            ]
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : null
+        }
+    },
+
+
+    "11" : {
+        "area" : "Legal foundations",
+        "subarea" : "Public Debt Management Agency",
+        "explanation" : "Law that establishes the Public Debt Management Agency (PDMA) as the investment banker of government",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 finished the conceptual framework for UFA",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2008-11-21",
+                    "milestone": "Jahangir Aziz Group",
+                    "url": "https://ajayshahblog.blogspot.in/2008/11/setting-up-debt-management-office.html",
+                    "story": "The first draft law for the `National Treasury Management Agency'",
+                    "score": 0.1
+                },
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law for PDMA. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law on PDMA. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date": "2015-02-28",
+                    "milestone": "PDMA reform placed into Finance Bill 2015",
+                    "url": "https://ajayshahblog.blogspot.in/2015/03/what-is-interesting-in-budget-2015.html",
+                    "story": "The IFC PDMA law was placed into the Finance Bill 2015, which is permissible as it is a money bill. This gets us to a score of 1.",
+                    "score": 1
+                },
+                {
+                    "date": "2015-05-01",
+                    "milestone": "PDMA reform rolled back",
+                    "url": "http://www.thehindu.com/todays-paper/jaitley-rolls-back-proposal-on-public-debt/article7160316.ece",
+                    "story": "The PDMA law was rolled back",
+                    "score": 0
+                }
+            ]
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date": "2014-09-30",
+                    "milestone": "PDMA TF",
+                    "url": "https://ajayshahblog.blogspot.in/2014/09/4-task-forces-setup-by-mof-to-build.html",
+                    "story": "Task Force on setting up the PDMA (Chairman: D. Swarup) made an implementation plan for building RC",
+                    "score": 0.1
+                }
+            ]
+        }
+    },
+
+    "12" : {
+        "area" : "Legal foundations",
+        "subarea" : "Financial Stability and Development Council",
+        "explanation" : "Law that establishes the Financial Stability and Development Council as the council of regulators that's charged with systemic risk regulation, and with development",
+        "Concepts" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2008-09-12",
+                    "milestone": "A hundred small steps (Chairman: Raghuram Rajan)",
+                    "url": "http://planningcommission.nic.in/reports/genrep/rep_fr/cfsr_all.pdf",
+                    "story": "Introduced the US FSOC idea into the Indian discourse",
+                    "score": 0.2
+                },
+                {
+                    "date": "2013-03-22",
+                    "milestone": "FSLRC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol1.pdf",
+                    "story": "FSLRC volume 1 finished the conceptual framework for FSDC",
+                    "score": 1
+                }
+            ]
+        },
+        "DraftLaw" : {
+            "weight" : 5,
+            "events" : [
+                {
+                    "date": "2013-03-22",
+                    "milestone": "IFC v1",
+                    "url": "http://finmin.nic.in/fslrc/fslrc_report_vol2.pdf",
+                    "story": "IFC v1 was the first complete draft of a law for FSDC. It was 90% good.",
+                    "score": 0.9
+                },
+                {
+                    "date": "2015-07-23",
+                    "milestone": "IFC v1.1",
+                    "url": "http://finmin.nic.in/suggestion_comments/Revised_Draft_IFC.pdf",
+                    "story": "IFC v1.1 cleaned up and completed the law on FSDC. At this point we get to the score of 1",
+                    "score": 1
+                }
+            ]
+        },
+        "LawEnacted" : {
+            "weight" : 10,
+            "events" : null
+        },
+        "LawImplemented" : {
+            "weight" : 10,
+            "events" : [
+                {
+                    "date": "2010-10-31",
+                    "milestone": "Non-statutory FSDC created",
+                    "url": "http://finmin.nic.in/fsdc/GazNote31122010.pdf ",
+                    "story": "MOF created FSDC as a council of regulators chaired by the FM, with low powers",
+                    "score": 0.1
+                }
+            ]
+        }
+    },
+    
+    "13" : {
+        "area" : "Markets",
+        "subarea" : "Equities",
+        "explanation" : "Regulatory reforms for equity markets",
+        "MarketInfrastructure" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "EntryBarriersIntoIntermediation" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    },
+
+    "14" : {
+        "area" : "Markets",
+        "subarea" : "BCD Nexus",
+        "explanation" : "Regulatory reforms for bond markets",
+        "MarketInfrastructure" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "EntryBarriersIntoIntermediation" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    },
+
+    "15" : {
+        "area" : "Markets",
+        "subarea" : "Commodities",
+        "explanation" : "Regulatory reforms for commodities markets",
+        "MarketInfrastructure" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "EntryBarriersIntoIntermediation" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    },
+    
+    "16" : {
+        "area" : "Financial firms",
+        "subarea" : "Banking",
+        "explanation" : "Regulatory reforms for banking firms",
+        "LicensingEntryBarriers" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    },
+
+    "17" : {
+        "area" : "Financial firms",
+        "subarea" : "Payments",
+        "explanation" : "Regulatory reforms for Payments",
+        "LicensingEntryBarriers" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    },
+
+    "18" : {
+        "area" : "Financial firms",
+        "subarea" : "Insurance",
+        "explanation" : "Regulatory reforms for Insurance",
+        "LicensingEntryBarriers" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    },
+
+    "19" : {
+        "area" : "Financial firms",
+        "subarea" : "Mutual funds",
+        "explanation" : "Regulatory reforms for Mutual funds",
+        "LicensingEntryBarriers" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    },
+
+    "20" : {
+        "area" : "Financial firms",
+        "subarea" : "Pension funds",
+        "explanation" : "Regulatory reforms for Pension funds",
+        "LicensingEntryBarriers" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulatoryArrangement" : {
+            "weight" : 20,
+            "events" : null
+        },
+        "SoundRegulations" : {
+            "weight" : 20,
+            "events" : null
+        },
+	"EnforcementOfRegulations" : {
+            "weight" : 20,
+            "events" : null
+        }
+    }
+
+    
+
+
+}
